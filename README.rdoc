@@ -45,3 +45,4 @@ Options for renaming setters/getters (useful for name collisions)
 
 Automated initialize()
 
+Support for multiple models of the same class
