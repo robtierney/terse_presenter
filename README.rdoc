@@ -10,7 +10,7 @@ involving multiple models.
     presents_for User                # makes a @user, delegates @user's column's accessors
     presents_for Merchant            # same for @merchant
     presents_for MerchantEmployee,
-        :extra_accessors=>['foo'], :extra_setters=>['bar=']    # adds custom accessors
+        :extra_accessors=>[:foo], :extra_setters=>[:bar, :baz]    # adds custom accessors
 
     def save
       # custom stuff.
