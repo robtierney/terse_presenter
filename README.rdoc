@@ -1,0 +1,47 @@
+Terse Presenter is a presenter pattern implementation to simplify forms
+involving multiple models.
+
+= How to Use
+
+== Basics
+
+  class MyPresenter < TersePresenter
+
+    presents_for User                # makes a @user, delegates @user's column's accessors
+    presents_for Merchant            # same for @merchant
+    presents_for MerchantEmployee,
+        :extra_accessors=>['foo'], :extra_setters=>['bar=']    # adds custom accessors
+
+    def save
+      # custom stuff.
+    end
+  
+  end
+
+You could then use MyPresenter in your views/controllers just as if it were an
+ActiveRecord model. 
+
+Additionally, each internal instance variable has an attr_accessor,
+ie.  my_presenter.merchant_employee  if you need to reach inside.
+
+== Advanced
+
+presents_for takes options for :extra_accessors, :extra_getters, and
+:extra_setters; each being an array of symbols.
+
+You'll always want to create a custom save() method, to handle the proper
+save-order and validation.  TersePresenter provides you with an
+copy_errors_to_presenter(model) method.  You can use this in your custom saves
+to make your view show the validations error just as it would for the internal
+models.
+
+= Requirements
+
+BaseWithoutTable plugin
+
+= Coming Soon
+
+Options for renaming setters/getters (useful for name collisions)
+
+Automated initialize()
+
